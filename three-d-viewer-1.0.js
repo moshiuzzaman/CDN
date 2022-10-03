@@ -1156,7 +1156,7 @@ styleSheet.innerText = styles;
 document.head.appendChild(styleSheet);
 
 
-document.getElementById("bs_3D_viewer_root").innerHTML +=`
+document.getElementById("bs_3D_viewer_root-tt").innerHTML +=`
 <three-d-viewer
       alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
       src="./Iphone14-ProMax_Gold.glb"
