@@ -1130,12 +1130,13 @@
  
  
  let styles=`
- div#bs_3D_viewer_root {
+ div#bs_3D_viewer_robi {
    display: flex;
    justify-content: center;
    border: 1px solid black;
    overflow: hidden;
    position: relative;
+   height: 400px;
    
  }
  img#robiLogo {
