@@ -127,7 +127,7 @@ function start() {
 
 
 function timer() {
-  num += 25;
+  num +=incress;
 
   const timeToDisplay = {
     days: num / 1000000000,
