@@ -1,4 +1,8 @@
-getHtml.innerHTML =`
+
+
+
+function start() {
+  getHtml.innerHTML =`
 <div class="counter_content">
  
 
@@ -114,14 +118,7 @@ document.head.appendChild(styleSheet);
 
 let count;
 
-const dd = document.getElementById("counter_days");
-const hh = document.getElementById("counter_hours");
-const mm = document.getElementById("counter_minutes");
-const ss = document.getElementById("counter_seconds");
 
-
-
-function start() {
   count = setInterval(() => timer(), 1000);
 }
 
@@ -142,6 +139,11 @@ function timer() {
 
 
 function setDisplay({ days, hours, minutes, seconds }) {
+  
+const dd = document.getElementById("counter_days");
+const hh = document.getElementById("counter_hours");
+const mm = document.getElementById("counter_minutes");
+const ss = document.getElementById("counter_seconds");
   setDigitContent(dd, days);
   setDigitContent(hh, hours);
   setDigitContent(mm, minutes);
