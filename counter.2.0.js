@@ -1,4 +1,4 @@
-document.getElementById("coundetRoot").innerHTML =`
+getHtml.innerHTML =`
 <div class="counter_content">
  
 
