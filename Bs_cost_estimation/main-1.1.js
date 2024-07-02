@@ -393,6 +393,7 @@ document
             return;
         }
         alert("Form submitted successfully");
+        window.location.reload();
     });
 
 const initialFormSubmit = async () => {
