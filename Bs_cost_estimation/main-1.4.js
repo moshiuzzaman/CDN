@@ -421,7 +421,7 @@ document
             return;
         }
         alert("Form submitted successfully");
-        // window.location.reload();
+        window.location.reload();
     });
 
 const initialFormSubmit = async () => {
