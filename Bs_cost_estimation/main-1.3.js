@@ -113,12 +113,14 @@ document.getElementById("cost_Estimation_container").innerHTML += `<div
     <ul id="cost_Estimation_selectedOptionsList"></ul>
 </div>`;
 
+
+
 const steps = Json;
 let navigationHistory = [];
 let selectedOptions = [];
 const getTotalPrice = () => {
     return selectedOptions.reduce((acc, option) => acc + option.price, 0);
-};
+}
 document.addEventListener("DOMContentLoaded", () => {
     if (steps && steps.length > 0) {
         renderQuestion(steps[0], 0, "Cost_Estimation");
@@ -190,10 +192,14 @@ function createOptionsContainer(options, question, parentContainerId) {
         }
 
         const textLabel = document.createElement("div");
-        textLabel.className = "text-label";
         textLabel.textContent =
             typeof option === "string" ? option : option.label;
         optionContainer.appendChild(textLabel);
+
+        const textPrice = document.createElement("p");
+        textPrice.className = "cost_Estimation_option-price";
+        textPrice.textContent = `£${option.price || 100}`;
+        optionContainer.appendChild(textPrice);
 
         optionContainer.onclick = () =>
             handleOptionClick(option, question, parentContainerId);
@@ -317,7 +323,7 @@ function updateSelectedOptionsList(removeIconFromLastItem = true) {
         ".cost_Estimation_mySelectOption"
     );
     const totalPriceDiv = document.getElementById("cost_estimation_total");
-
+    
     document.getElementById(
         "cost_Estimation_totalPrice"
     ).innerText = `£${getTotalPrice()}`;
@@ -337,7 +343,7 @@ function updateSelectedOptionsList(removeIconFromLastItem = true) {
         label.classList.add("cost_Estimation_selectedOptionsList_item_label");
         label.innerText = option.value;
         const price = document.createElement("p");
-        price.classList.add("cost_Estimation_selectedOptionsList_item_label");
+        price.classList.add("cost_Estimation_selectedOptionsList_item_price");
         price.innerText = `£${option.price}`;
 
         li.appendChild(label);
@@ -431,7 +437,7 @@ const initialFormSubmit = async () => {
             },
             body: JSON.stringify({
                 "seleced-items": selectedOptions,
-                totalPrice: getTotalPrice(),
+                totalPrice:getTotalPrice(),
                 name,
                 email,
                 key: 1234,
@@ -467,6 +473,8 @@ const handleFormSubmit = async () => {
     ).value;
     const name = document.getElementById("cost_estimation_form_name").value;
     const email = document.getElementById("cost_estimation_form_email").value;
+
+    
 
     const res = await fetch(
         "https://stage.brainstation-23.co.uk/wp-json/endpoints/cost-estimator/final-data/",
@@ -876,5 +884,11 @@ ul#cost_Estimation_selectedOptionsList {
 p.cost_Estimation_selectedOptionsList_item_label,#cost_estimation_total {
     margin: 0;
 }
-`;
+
+p.cost_Estimation_option-price,.cost_Estimation_selectedOptionsList_item_price  {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+    font-weight: 300;
+}`;
 document.head.appendChild(style);
