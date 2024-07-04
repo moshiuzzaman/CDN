@@ -525,7 +525,6 @@ style.innerHTML = `.cost_Estimation_container {
 }
 
 .cost_Estimation_left-side {
-    padding: 20px;
     border-radius: 5px;
     margin-top: 50px;
     height: 100%;
@@ -583,9 +582,9 @@ p.cost_Estimation_question-title-content {
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
 }
 .cost_estimation_option-image {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 10px;
     filter: grayscale(100%);
 }
 .cost_Estimation_option-container:hover .cost_estimation_option-image {
@@ -781,7 +780,8 @@ p.cost_Estimation_question-title-content {
 
 .cost_Estimation_mySelectOption {
     color: #00a7e5;
-    font-size: 1.5em;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 .cost_Estimation_submit-button {
@@ -883,6 +883,7 @@ ul#cost_Estimation_selectedOptionsList {
 
 p.cost_Estimation_selectedOptionsList_item_label,#cost_estimation_total {
     margin: 0;
+    font-size: 14px;
 }
 
 p.cost_Estimation_option-price,.cost_Estimation_selectedOptionsList_item_price  {
