@@ -1,6 +1,8 @@
 import { Json } from "./Script/JSON.js";
 
-document.getElementById("cost_Estimation_container").innerHTML += `<div
+document.getElementById(
+    "cost_Estimation_container"
+).innerHTML += `<div
     class="cost_Estimation_right-side"
     id="formContainer"
     style="display: none"
@@ -63,31 +65,22 @@ document.getElementById("cost_Estimation_container").innerHTML += `<div
             style="display: none"
             id="cost_estimation_form_YourRegion"
             class="cost_Estimation_form-input cost_Estimation_secondary-field"
-        >
+        >", "Europe" "USA" "Asia" 
             <option value="">Your Region</option>
             <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="South America">South America</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="USA">USA</option>
             <option value="Asia">Asia</option>
-            <option value="Africa">Africa</option>
-            <option value="Australia">Australia</option>
         </select>
-        <textarea
+        <textArea
             style="display: none"
             id="cost_estimation_form_message"
             placeholder="Message..."
             class="cost_Estimation_form-input cost_Estimation_secondary-field"
-        ></textarea>
+        ></textArea>
     </form>
     <div class="cost_Estimation_form_button">
-        <button
-            type="button"
-            id="cost_Estimation_form_to_estimation_prevButton"
-            class="cost_Estimation_submit-button cost_Estimation_secondary-field"
-            
-        >
-            Prev
-        </button>
+        
         <button
             type="button"
             id="cost_Estimation_form_nextButton"
@@ -202,11 +195,6 @@ function createOptionsContainer(options, question, parentContainerId) {
             typeof option === "string" ? option : option.label;
         optionContainer.appendChild(textLabel);
 
-        const textPrice = document.createElement("p");
-        textPrice.className = "cost_Estimation_option-price";
-        textPrice.textContent = `£${option.price || 100}`;
-        optionContainer.appendChild(textPrice);
-
         optionContainer.onclick = () =>
             handleOptionClick(option, question, parentContainerId);
         optionsContainer.appendChild(optionContainer);
@@ -281,7 +269,8 @@ function handleOptionClick(option, question, parentContainerId) {
         value: typeof option === "string" ? option : option.label,
         price: option.price || 100,
     });
-    console.log(selectedOptions);
+
+    console.log(navigationHistory, selectedOptions);
     updateSelectedOptionsList();
 
     if (
@@ -298,13 +287,6 @@ function handleOptionClick(option, question, parentContainerId) {
         document.getElementById("formContainer").style.display = "flex";
     }
 }
-
-document.getElementById(
-    "cost_Estimation_form_to_estimation_prevButton"
-).onclick = function () {
-    document.getElementById("Cost_Estimation").style.display = "block";
-    document.getElementById("formContainer").style.display = "none";
-};
 
 function createBackButton(parentContainerId) {
     const backButtonContainer = document.createElement("div");
@@ -400,9 +382,6 @@ document
         document.getElementById(
             "cost_Estimation_form_nextButton"
         ).style.display = "none";
-        document.getElementById(
-            "cost_Estimation_form_to_estimation_prevButton"
-        ).style.display = "none";
         if (!document.querySelector('input[type="submit"]')) {
             const submitButton = document.createElement("input");
             submitButton.type = "submit";
@@ -428,9 +407,6 @@ document
         ).style.display = "none";
         document.getElementById(
             "cost_Estimation_form_nextButton"
-        ).style.display = "";
-        document.getElementById(
-            "cost_Estimation_form_to_estimation_prevButton"
         ).style.display = "";
         const submitButton = document.querySelector('input[type="submit"]');
         if (submitButton) {
@@ -534,6 +510,7 @@ const handleFormSubmit = async () => {
         return false;
     }
 };
+
 
 const style = document.createElement("style");
 style.innerHTML = `.cost_Estimation_container {
@@ -806,7 +783,7 @@ p.cost_Estimation_question-title-content {
        
         width: 100%;
     }
-        .cost_Estimation_options-container-input textarea {
+    .cost_Estimation_options-container-input textarea {
         width: 95vw !important;
     }
 }
