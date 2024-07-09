@@ -1,8 +1,6 @@
 import { Json } from "./Script/JSON.js";
 
-document.getElementById(
-    "cost_Estimation_container"
-).innerHTML += `<div
+document.getElementById("cost_Estimation_container").innerHTML += `<div
     class="cost_Estimation_right-side"
     id="formContainer"
     style="display: none"
@@ -270,7 +268,6 @@ function handleOptionClick(option, question, parentContainerId) {
         price: option.price || 100,
     });
 
-    console.log(navigationHistory, selectedOptions);
     updateSelectedOptionsList();
 
     if (
@@ -428,6 +425,8 @@ document
         window.location.reload();
     });
 
+let initialFormId = null;
+
 const initialFormSubmit = async () => {
     const name = document.getElementById("cost_estimation_form_name").value;
     const email = document.getElementById("cost_estimation_form_email").value;
@@ -449,7 +448,7 @@ const initialFormSubmit = async () => {
         }
     );
     const data = await res.json();
-
+    initialFormId = data.id;
     if (data.status) {
         console.log("Data has been submitted successfully");
         return true;
@@ -495,7 +494,7 @@ const handleFormSubmit = async () => {
                 whereFind,
                 region,
                 message,
-
+                id: initialFormId,
                 key: 1234,
             }),
         }
@@ -510,7 +509,6 @@ const handleFormSubmit = async () => {
         return false;
     }
 };
-
 
 const style = document.createElement("style");
 style.innerHTML = `.cost_Estimation_container {
