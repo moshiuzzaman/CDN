@@ -1,5 +1,6 @@
 import { Json } from "./Script/JSON.js";
 
+console.log(api_url);
 document.getElementById("cost_Estimation_container").innerHTML += `<div
     class="cost_Estimation_right-side"
     id="formContainer"
@@ -431,19 +432,22 @@ const initialFormSubmit = async () => {
     const name = document.getElementById("cost_estimation_form_name").value;
     const email = document.getElementById("cost_estimation_form_email").value;
 
-    const res = await fetch(initialFormSubmitUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "seleced-items": selectedOptions,
-            totalPrice: getTotalPrice(),
-            name,
-            email,
-            key: 1234,
-        }),
-    });
+    const res = await fetch(
+        `${api_url}/wp-json/endpoints/cost-estimator/data/`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "seleced-items": selectedOptions,
+                totalPrice: getTotalPrice(),
+                name,
+                email,
+                key: 1234,
+            }),
+        }
+    );
     const data = await res.json();
     initialFormId = data.id;
     if (data.status) {
@@ -474,25 +478,28 @@ const handleFormSubmit = async () => {
     const name = document.getElementById("cost_estimation_form_name").value;
     const email = document.getElementById("cost_estimation_form_email").value;
 
-    const res = await fetch(finalFormSubmitUrl, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "seleced-items": selectedOptions,
-            totalPrice: getTotalPrice(),
-            name,
-            email,
-            contactNo,
-            companyName,
-            whereFind,
-            region,
-            message,
-            id: initialFormId,
-            key: 1234,
-        }),
-    });
+    const res = await fetch(
+        `${api_url}/wp-json/endpoints/cost-estimator/final-data/`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "seleced-items": selectedOptions,
+                totalPrice: getTotalPrice(),
+                name,
+                email,
+                contactNo,
+                companyName,
+                whereFind,
+                region,
+                message,
+                id: initialFormId,
+                key: 1234,
+            }),
+        }
+    );
     const data = await res.json();
     console.log(data);
     if (data.status) {
